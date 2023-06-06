@@ -25,7 +25,7 @@ string s: a time in 12 hour format
 
 *** Returns
 
-string: the time in  hour format
+string: the time in 24 hour format
 
 *** Input Format
 
