@@ -1,17 +1,20 @@
-def combine(initial_word: str, iterable_words: list):
-    for word in iterable_words:
-        initial_word += word.capitalize()
+def combine(words: str, start_capital = False):
+    separated_words = words.split(" ")
+    capital_words = separated_words[1:] if not start_capital else separated_words
+    combined_word = separated_words[0] if not start_capital else ''
 
-    return initial_word
+    for word in capital_words:
+        combined_word += word.capitalize()
+
+    return combined_word
+
 
 
 def camel_case(s: str):
     operation, str_type, words = s.split(";")
 
     if operation == 'S':
-        # Split operation
         if str_type == 'M':
-            #method
             pass
         elif str_type == 'C':
             #class
@@ -22,21 +25,9 @@ def camel_case(s: str):
     else:
         # Combine operation
         if str_type == 'M':
-            separated_words = words.split(" ")
-            capital_words = separated_words[1:]
-            initial_word = separated_words[0]
-
-            return combine(initial_word, capital_words)+"()"
+            return combine(words)+"()"
 
         elif str_type == 'C':
-            separated_words = words.split(" ")
-
-            combined_word = combine("", separated_words)
-
-            return combined_word
+            return combine(words, start_capital=True)
         else:
-            separated_words = words.split(" ")
-            capital_words = separated_words[1:]
-            initial_word = separated_words[0]
-
-            return combine(initial_word, capital_words)
+            return combine(words)
